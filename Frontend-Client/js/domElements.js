@@ -1,0 +1,18 @@
+export const elements = {
+  searchInput: document.getElementById("searchInput"),
+  categoriesContainer: document.getElementById("categoriesContainer"),
+  productsGrid: document.getElementById("productsGrid"),
+  productsCount: document.getElementById("productsCount"),
+  emptyState: document.getElementById("emptyState"),
+  cartButton: document.getElementById("cartButton"),
+  cartSidebar: document.getElementById("cartSidebar"),
+  cartOverlay: document.getElementById("cartOverlay"),
+  cartItems: document.getElementById("cartItems"),
+  cartEmpty: document.getElementById("cartEmpty"),
+  cartTotal: document.getElementById("cartTotal"),
+  cartCloseBtn: document.getElementById("cartCloseBtn"),
+  whatsappBtn: document.getElementById("whatsappBtn"),
+  cartCount: document.getElementById("cartCount"),
+  toastContainer: document.getElementById("toastContainer"),
+  loadingScreen: document.getElementById("loadingScreen"),
+};

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MEDINA</title>
+    <link rel="stylesheet" href="css/catalog.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-content">
+            <div class="loading-spinner">
+                <div class="spinner"></div>
+                <div class="sparkles">✨</div>
+            </div>
+            <p class="loading-text">Cargando productos...</p>
+            <p class="loading-subtext">Preparando tu experiencia de compra</p>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <!-- Logo -->
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-store"></i>
+                    </div>
+                    <div class="logo-text">
+                        <h1>MEDINA</h1>
+                        <p></p> <!----aqui se puede ponder algun mensaje -->
+                    </div>
+                </div>
+
+                <div class="header-actions">
+                    <div class="search-container">
+                        <i class="fas fa-search search-icon"></i>
+                        <input type="text" id="searchInput" placeholder="Buscar productos...">
+                    </div>
+
+                    <button class="cart-button" id="cartButton">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-text">Carrito</span>
+                        <span class="cart-count" id="cartCount">0</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Categorias -->
+    <section class="categories-section">
+        <div class="container">
+            <div class="categories-container" id="categoriesContainer">
+                <!-- las categorias se cargaran aqui -->
+            </div>
+        </div>
+    </section>
+
+    <main class="main">
+        <div class="container">
+            <div class="products-header">
+                <div class="products-title">
+                    <h2 id="sectionTitle">Todos los Productos</h2>
+                    <p class="products-count" id="productsCount">0 productos disponibles</p>
+                </div>
+            </div>
+
+            <div class="products-grid" id="productsGrid">
+            </div>
+            <div class="empty-state" id="emptyState" style="display: none;">
+                <div class="empty-content">
+                    <i class="fas fa-search empty-icon"></i>
+                    <h3>No se encontraron productos</h3>
+                    <p>Intenta con otros términos de búsqueda o categoría</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3 class="cart-title">
+                <div class="cart-title-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                </div>
+                Mi Pedido
+            </h3>
+            <button class="cart-close" id="cartCloseBtn">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
+        <div class="cart-content">
+            <div class="cart-items" id="cartItems">
+            </div>
+
+            <div class="cart-empty" id="cartEmpty">
+                <div class="cart-empty-content">
+                    <i class="fas fa-shopping-cart cart-empty-icon"></i>
+                    <p class="cart-empty-title">Tu pedido está vacío</p>
+                    <small class="cart-empty-subtitle">Agrega productos para comenzar</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="cart-footer">
+            <div class="cart-total-section">
+                <div class="cart-total-row">
+                    <span class="total-label">Total:</span>
+                    <span class="total-amount" id="cartTotal">$0.00</span>
+                </div>
+            </div>
+
+            <button class="whatsapp-button" id="whatsappBtn">
+                <i class="fab fa-whatsapp whatsapp-icon"></i>
+                <span class="whatsapp-text">Enviar Pedido por WhatsApp</span>
+            </button>
+        </div>
+    </div>
+ 
+    <div class="cart-overlay" id="cartOverlay"></div>
+
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- JavaScript -->
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administracion Medina</title>
+    <link rel="stylesheet" href="css/admin.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+  <script>
+    const token = localStorage.getItem('token');
+    if (!token){
+      alert('Debes iniciar sesión');
+      window.location.href = 'login.html';
+    }
+  </script>
+<!-------Barra Lateral-->
+<div class="admin-container">
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="logo">
+          <img src="../img/logo.png" alt="Logo" />
+          <i class="fas fa-box"></i>
+          <span>Admin Medina</span>
+        </div>
+      </div>
+      <nav class="sidebar-nav">
+        <button class="nav-item active" data-section="products">
+          <i class="fas fa-box"></i>
+          <span>Productos</span>
+        </button>
+        <button class="nav-item" data-section="categories">
+          <i class="fas fa-folder-open"></i>
+          <span>Categoías</span>
+        </button>
+        <button class="nav-item" data-section="links">
+          <i class="fas fa-link"></i>
+          <span>Enlace</span>
+        </button>
+        <button class="nav-item" data-section="whatsapp">
+          <i class="fas fa-box"></i>
+          <span>Whatsapp</span>
+        </button>
+      </nav>
+    </aside>
+<!------Contenido principak-->
+    <main class="main-content">
+      <header class="main-header">
+        <h1 id="section-title">Productos</h1>
+      </header>
+
+      <div class="content-area">
+        <!-----Seccion de productos-->
+        <section id="products-section" class="section active">
+                    <div class="section-header">
+                        <div class="section-info">
+                            <h2>Gestión de Productos</h2>
+                            <p>Administra tu catálogo de productos</p>
+                        </div>
+                        <button class="btn btn-primary" onclick="openAddProductModal()">
+                            <i class="fas fa-plus"></i>
+                            Agregar Producto
+                        </button>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Productos</h3>
+                            <div class="search-filter">
+                                <div class="search-box">
+                                    <i class="fas fa-search"></i>
+                                    <input type="text" placeholder="Buscar productos..." id="product-search">
+                                </div>
+                                <button class="btn btn-outline">
+                                    <i class="fas fa-filter"></i>
+                                    Filtrar
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <div class="table-container">
+                                <table class="data-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Imagen</th>
+                                            <th>Producto</th>
+                                            <th>Categoría</th>
+                                            <th>Tallas</th>
+                                            <th>Precio ($)</th>
+                                            <th>Stock</th>
+                                            <th>Promoción</th>
+                                            <th>Código</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="products-table-body">
+                                        <!-- Los productos se cargarán con JavaScript -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!----- Sección de Categorías -->
+                <section id="categories-section" class="section">
+                    <div class="section-header">
+                        <div class="section-info">
+                            <h2>Gestión de Categorías</h2>
+                            <p>Organiza los produtos en distintas categorias</p>
+                        </div>
+                        <button class="btn btn-primary" onclick="openAddCategoryModal()">
+                            <i class="fas fa-plus"></i>
+                            Agregar Categoría
+                        </button>
+                    </div>
+
+                    <div class="categories-grid" id="categories-grid">
+                        <!---- Las categorías se cargarán con JavaScript ----->
+                    </div>
+                </section>
+                
+                      <!-- Sección de Enlaces -->
+                <section id="links-section" class="section">
+                    <div class="section-header">
+                        <div class="section-info">
+                            <h2>Enlaces Conectados</h2>
+                            <p>Enlace para compartirlo por WhatsApp</p>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Enlaces Generados</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="table-container">
+                                <table class="data-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Nombre del Enlace</th>
+                                            <th>Productos</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="links-table-body">
+                                        <!-- Los enlaces se cargarán con JavaScript -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Sección de WhatsApp -->
+                <section id="whatsapp-section" class="section">
+                    <div class="section-header">
+                        <div class="section-info">
+                            <h2>Integración con WhatsApp</h2>
+                            <p>Compartir el catalogo por WhatsApp</p>
+                        </div>
+                    </div>
+
+                    <div class="whatsapp-grid">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3><i class="fab fa-whatsapp"></i> Compartir Rápido</h3>
+                                <p>Comparte tu catálogo</p>
+                            </div>
+                            <div class="card-content">
+                                <form class="form-group">
+                                    <label for="phone-number">Número de Teléfono</label>
+                                    <input type="tel" id="phone-number" placeholder="+1234567890">
+                                    
+                                    <label for="whatsapp-message">Plantilla de Mensaje</label>
+                                    <textarea id="whatsapp-message" rows="4" placeholder="Escribe un mensaje">¡Hola! Revisa aquí nuestros productos </textarea>
+                                    
+                                    <label for="catalog-select">Seleccionar Enlace de Catálogo</label>
+                                    <select id="catalog-select">
+                                        <option value="">Elige un enlace de catálogo</option>
+                                        <option value="http://localhost:9000/cliente/catalog.html">Variedades Medina</option>
+                                    </select>
+                                    
+                                    <button type="button" class="btn btn-primary btn-full" onclick="sendWhatsApp()">
+                                        <i class="fab fa-whatsapp"></i>
+                                        Enviar por WhatsApp
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>Configuración de WhatsApp</h3>
+                                <p>Configura tu integración con WhatsApp</p>
+                            </div>
+                            <div class="card-content">
+                                <form class="form-group">
+                                    <label for="business-number">Número de WhatsApp del Negocio</label>
+                                    <input type="tel" id="business-number" placeholder="+1234567890">
+                                    
+                                    <label for="default-message">Mensaje de Ventas Predeterminado</label>
+                                    <textarea id="default-message" rows="4">¡Hola! Bienvenido a nuestra tienda. ¿Cómo puedo ayudarte hoy?</textarea>
+                                    
+                                    <div class="switch-group">
+                                        <label class="switch">
+                                            <input type="checkbox" id="auto-message">
+                                            <span class="slider"></span>
+                                        </label>
+                                        <label for="auto-message">Habilitar mensaje de bienvenida automático</label>
+                                    </div>
+                                    
+                                    <button type="button" class="btn btn-outline btn-full">Guardar Configuración</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Actividad Reciente de WhatsApp</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="activity-list" id="whatsapp-activity">
+                                
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modales -->
+    <!-- Modal Agregar Producto -->
+    <div id="add-product-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Agregar Nuevo Producto</h3>
+                <button class="modal-close" onclick="closeModal('add-product-modal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="add-product-form" class="form-group">
+                    <div class="form-row">
+                        <div class="form-field">
+                            <label for="product-name">Nombre del Producto</label>
+                            <input type="text" id="product-name" required>
+                        </div>
+                        <div class="form-field">
+                            <label for="product-category">Categoría</label>
+                            <select id="product-category" required>
+                                <option value="">Seleccionar categoría</option>
+                                <option value="hombres">Hombre</option>
+                                <option value="mujeres">Mujer</option>
+                                <option value="niños">Niños</option>
+                                <option value="ropa-interior">Ropa Interior</option>
+                                <option value="calcetines">Calcetines</option>
+                                <option value="otros">Otros</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <label for="product-description">Descripción</label>
+                    <textarea id="product-description" rows="3"></textarea>
+                    
+                    <div class="form-field">
+                        <label for="product-model-code">Código</label>
+                        <input type="text" id="product-model-code" placeholder="Ej: MED001" required>
+                    </div>
+
+                    
+                    <div class="form-row">
+                        <div class="form-field">
+                            <label for="product-price">Precio ($)</label>
+                            <input type="number" id="product-price" step="0.01" required>
+                        </div>
+                        <div class="form-field">
+                            <label for="product-stock">Stock</label>
+                            <input type="number" id="product-stock" required>
+                        </div>
+                        <div class="form-field">
+                            <label for="product-sizes">Tallas</label>
+                            <input type="text" id="product-sizes" placeholder="S, M, L, XL">
+                        </div>
+                    </div>
+                    
+                    <div class="upload-area" onclick="document.getElementById('product-image').click()">
+                        <i class="fas fa-upload"></i>
+                        <p>Haz clic para subir o arrastra y suelta</p>
+                        <input type="file" name="imageUrl" id="product-image" accept="image/*" hidden>
+                    </div>
+                    
+                    <!-- Vista previa de imagen -->
+                    <div id="image-preview" style="margin-top: 10px;">
+                        <img id="preview-img" src="" alt="Vista previa" style="max-width: 100%; max-height: 150px; display: none;" />
+                    </div>
+                    
+                    <div class="switch-group">
+                        <label class="switch">
+                            <input type="checkbox" id="product-promotion">
+                            <span class="slider"></span>
+                        </label>
+                        <label for="product-promotion">Habilitar Promoción</label>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline" onclick="closeModal('add-product-modal')">Cancelar</button>
+                <button type="button" class="btn btn-primary" onclick="addProduct()">Agregar Producto</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Agregar Categoría -->
+    <div id="add-category-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Agregar Nueva Categoría</h3>
+                <button class="modal-close" onclick="closeModal('add-category-modal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="add-category-form" class="form-group">
+                    <label for="category-name">Nombre de la Categoría</label>
+                    <input type="text" id="category-name" required>
+                    
+                    <label for="category-description">Descripción (Opcional)</label>
+                    <textarea id="category-description" rows="3"></textarea>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline" onclick="closeModal('add-category-modal')">Cancelar</button>
+                <button type="button" class="btn btn-primary" onclick="addCategory()">Agregar Categoría</button>
+            </div>
+        </div>
+    </div>
+
+  
+    <script type="module">
+        import { initProductController } from './js/controllers/productController.js';
+        import { initCategoryController } from './js/controllers/categoryController.js';
+        import { initWhatsAppController } from './js/controllers/whatsappController.js';
+        import { initLinkController } from './js/controllers/linkController.js';
+
+        initProductController();
+        initCategoryController();
+        initWhatsAppController();
+        initLinkController();
+    </script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login Medina</title>
+  <link rel="stylesheet" href="css/login.css" />
+</head>
+
+<body>
+  <div class="wrapper">
+    <form id="login-form">
+      <h2>Medina</h2>
+
+      <div class="input-field">
+        <input type="email" id="email" required />
+        <label for="email">Ingresa tu correo electrónico</label>
+      </div>
+
+      <div class="input-field">
+        <input type="password" id="password" required />
+        <label for="password">Ingresa tu contraseña</label>
+      </div>
+
+      <div class="forget">
+        <label for="remember">
+          <input type="checkbox" id="remember" />
+          <p>Recordar</p>
+        </label>
+        <a href="#">¿Olvidaste la contraseña?</a>
+      </div>
+
+      <button type="submit">Ingresar</button>
+    </form>
+  </div>
+
+  <script type="module" src="js/login.js"></script>
+</body>
+</html>
